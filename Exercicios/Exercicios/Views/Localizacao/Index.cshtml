@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Exercicios.Models.LocalizacaoModel>
+
+@{
+    ViewData["Title"] = "Inde da Página de Localizacao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Localizacoes</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logradouro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var LocalizacaoModel in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.Logradouro)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.Bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.UF)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.Ativo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@LocalizacaoModel.Id">Editar</a>
+                    @*ToDo: Deletar*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

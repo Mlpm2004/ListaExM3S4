@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Exercicios.Controllers
 {
-    public class EmpresaController : Controller
+    public class LocalizacaoController : Controller
     {
         private readonly IDbContextFactory<ExerciciosDbContext> context;
-        public EmpresaController(IDbContextFactory<ExerciciosDbContext> context)
+        public LocalizacaoController(IDbContextFactory<ExerciciosDbContext> context)
         {
             this.context = context;
         }
@@ -15,7 +15,7 @@ namespace Exercicios.Controllers
         {
             using (var contextLocal = context.CreateDbContext())
             {
-                return View(await contextLocal.Empresas.ToListAsync());
+                return View(await contextLocal.Localizacoes.ToListAsync());
             }
         }
         public IActionResult Create()
@@ -24,7 +24,7 @@ namespace Exercicios.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(EmpresaModel model)
+        public async Task<IActionResult> Create(LocalizacaoModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -33,7 +33,7 @@ namespace Exercicios.Controllers
 
             using (var contextLocal = this.context.CreateDbContext())
             {
-                contextLocal.Empresas.Add(model);
+                contextLocal.Localizacoes.Add(model);
                 await contextLocal.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -42,30 +42,21 @@ namespace Exercicios.Controllers
         {
             using (var contextLocal = this.context.CreateDbContext())
             {
-                var EmpresaModel = await contextLocal.Empresas.Where(w => w.Id == id).FirstOrDefaultAsync();
+                var LocalizacaoModel = await contextLocal.Localizacoes.Where(w => w.Id == id).FirstOrDefaultAsync();
 
-
-                if (EmpresaModel == null)
+                if (LocalizacaoModel == null)
                 {
                     return NotFound();
                 }
 
-                return View(EmpresaModel);
+                return View(LocalizacaoModel);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, EmpresaModel model)
+        public async Task<IActionResult> Edit(int id, LocalizacaoModel model)
         {
-            using (var contextoLocal = this.context.CreateDbContext())
-            if (model.Ativo == false)
-            {
-
-                var LocalizacaoModel = await contextoLocal.Localizacoes.Where(l => l.Id_Empresa==model).FirstOrDefaultAsync();
-                    LocalizacaoModel.Ativo = false;
-
-            }
             if (!ModelState.IsValid)
             {
                 return View(model);

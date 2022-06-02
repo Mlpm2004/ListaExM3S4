@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Exercicios.Models.CardapioModel>
+
+@{
+    ViewData["Title"] = "Inde da Página de Cardapio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cardapios</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var CardapioModel in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => CardapioModel.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => CardapioModel.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => CardapioModel.Valor)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => CardapioModel.Ativo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@CardapioModel.Id">Editar</a>
+                    @*ToDo: Deletar*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

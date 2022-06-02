@@ -15,6 +15,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\wamp\www\DEVinHouse\M3S4\ListaEx\ListaExM3S4\Exercicios\Exercicios
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Cardapio/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZGFwaW9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Cardapio/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZGFwaW9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Cardapio/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZGFwaW9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Empresa/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -33,6 +45,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Localizacao/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYWxpemFjYW9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Localizacao/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYWxpemFjYW9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Localizacao/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYWxpemFjYW9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/wamp/www/DEVinHouse/M3S4/ListaEx/ListaExM3S4/Exercicios/Exercicios/Views/Shared/Error.cshtml]
