@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Exercicios.Models.EmpresaModel>
+
+@{
+    ViewData["Title"] = "Inde da Página de Empresa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Empresas</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var EmpresaModel in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => EmpresaModel.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => EmpresaModel.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => EmpresaModel.Ativo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@EmpresaModel.Id">Editar</a>
+                    @*ToDo: Deletar*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
