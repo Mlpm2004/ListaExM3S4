@@ -5,6 +5,7 @@ namespace Exercicios.Models
     [Table("Cardapio")]
     public class CardapioModel
     {
+        [Key]
         [Column("Id")]
         [Display(Name = "ID do Cardápio")]
         public int Id { get; set; }
@@ -16,6 +17,6 @@ namespace Exercicios.Models
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
         [ForeignKey("FK_Cardapio_Empresa")]
-        public EmpresaModel Id_Empresa { get; set; }
+        public EmpresaModel Empresa { get; set; }
     }
 }

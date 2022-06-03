@@ -30,7 +30,8 @@ namespace Exercicios.Controllers
             {
                 return View(model);
             }
-
+            model.DataCadastro = DateTime.Now;
+            model.Ativo = true;
             using (var contextLocal = this.context.CreateDbContext())
             {
                 contextLocal.Localizacoes.Add(model);

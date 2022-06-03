@@ -30,7 +30,7 @@ namespace Exercicios.Controllers
             {
                 return View(model);
             }
-
+            model.Ativo = true;
             using (var contextLocal = this.context.CreateDbContext())
             {
                 contextLocal.Cardapios.Add(model);

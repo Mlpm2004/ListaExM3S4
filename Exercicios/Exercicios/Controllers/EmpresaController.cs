@@ -30,7 +30,8 @@ namespace Exercicios.Controllers
             {
                 return View(model);
             }
-
+            model.DataCadastro= DateTime.Now;
+            model.Ativo = true;
             using (var contextLocal = this.context.CreateDbContext())
             {
                 contextLocal.Empresas.Add(model);
@@ -67,7 +68,7 @@ namespace Exercicios.Controllers
             using var contextLocal = this.context.CreateDbContext();
             if (model.Ativo == false)
             {
-                var LocalizacaoModel = await contextLocal.Localizacoes.Where(l => l.Id_Empresa == model).FirstOrDefaultAsync();
+                var LocalizacaoModel = await contextLocal.Localizacoes.Where(l => l.Empresa == model).FirstOrDefaultAsync();
                 LocalizacaoModel.Ativo = false;
 
             }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exercicios.Migrations
 {
     [DbContext(typeof(ExerciciosDbContext))]
-    [Migration("20220602140041_Initial-Create")]
+    [Migration("20220603113822_Initial-Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,6 @@ namespace Exercicios.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Valor")
-                        .HasMaxLength(100)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -130,24 +129,24 @@ namespace Exercicios.Migrations
 
             modelBuilder.Entity("Exercicios.Models.CardapioModel", b =>
                 {
-                    b.HasOne("Exercicios.Models.EmpresaModel", "Id_Empresa")
+                    b.HasOne("Exercicios.Models.EmpresaModel", "Empresa")
                         .WithMany()
                         .HasForeignKey("FK_Cardapio_Empresa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Id_Empresa");
+                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Exercicios.Models.LocalizacaoModel", b =>
                 {
-                    b.HasOne("Exercicios.Models.EmpresaModel", "Id_Empresa")
+                    b.HasOne("Exercicios.Models.EmpresaModel", "Empresa")
                         .WithMany()
                         .HasForeignKey("FK_Localizacao_Empresa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Id_Empresa");
+                    b.Navigation("Empresa");
                 });
 #pragma warning restore 612, 618
         }

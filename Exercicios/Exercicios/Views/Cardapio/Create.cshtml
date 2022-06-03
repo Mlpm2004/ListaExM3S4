@@ -23,15 +23,11 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
              <div class="form-group">
-                <label asp-for="Id_Empresa" class="control-label"></label>
-                <input asp-for="Id_Empresa" class="form-control" />
-                <span asp-validation-for="Id_Empresa" class="text-danger"></span>
+                <label asp-for="Empresa" class="control-label"></label>
+                <input asp-for="Empresa" class="form-control" />
+                <span asp-validation-for="Empresa" class="text-danger"></span>
             </div> 
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
-                </label>
-            </div>
+ 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

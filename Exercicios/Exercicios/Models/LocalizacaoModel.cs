@@ -5,19 +5,24 @@ namespace Exercicios.Models
     [Table("Localizacao")]
     public class LocalizacaoModel
     {
+        [Key]
         [Column("Id")]
+        [Display(Name = "ID de Localização")]
         public int Id { get; set; }
-        [MaxLength(200)]
+        [MaxLength(200, ErrorMessage = "Erro na desrição com quantiade de caracteres")]
+        [Display(Name = "Logradouro")]
         public string Logradouro { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Erro na desrição com quantiade de caracteres")]
+        [Display(Name = "Bairro")]
         public string Bairro { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Erro na desrição com quantiade de caracteres")]
+        [Display(Name = "Cidade")]
         public string Cidade { get; set; }
-        [MaxLength(100)]
-        public string UF { get; set; }
+        [MaxLength(100, ErrorMessage = "Erro na desrição com quantiade de caracteres")]
+        [Display(Name = "UF")] public string UF { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
         [ForeignKey("FK_Localizacao_Empresa")]
-        public EmpresaModel Id_Empresa { get; set; }
+        public EmpresaModel Empresa { get; set; }
     }
 }
