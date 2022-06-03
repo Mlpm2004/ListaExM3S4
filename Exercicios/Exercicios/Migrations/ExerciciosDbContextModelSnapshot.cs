@@ -42,7 +42,7 @@ namespace Exercicios.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("EmpresaId")
+                    b.Property<int>("Empresa-Id")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Valor")
@@ -50,7 +50,7 @@ namespace Exercicios.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("Empresa-Id");
 
                     b.ToTable("Cardapio");
                 });
@@ -105,7 +105,7 @@ namespace Exercicios.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmpresaId")
+                    b.Property<int>("Empresa-Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Logradouro")
@@ -120,31 +120,31 @@ namespace Exercicios.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("Empresa-Id");
 
                     b.ToTable("Localizacao");
                 });
 
             modelBuilder.Entity("Exercicios.Models.CardapioModel", b =>
                 {
-                    b.HasOne("Exercicios.Models.EmpresaModel", "Empresa")
+                    b.HasOne("Exercicios.Models.EmpresaModel", "EmpresaId")
                         .WithMany()
-                        .HasForeignKey("EmpresaId")
+                        .HasForeignKey("Empresa-Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Empresa");
+                    b.Navigation("EmpresaId");
                 });
 
             modelBuilder.Entity("Exercicios.Models.LocalizacaoModel", b =>
                 {
-                    b.HasOne("Exercicios.Models.EmpresaModel", "Empresa")
+                    b.HasOne("Exercicios.Models.EmpresaModel", "EmpresaId")
                         .WithMany()
-                        .HasForeignKey("EmpresaId")
+                        .HasForeignKey("Empresa-Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Empresa");
+                    b.Navigation("EmpresaId");
                 });
 #pragma warning restore 612, 618
         }

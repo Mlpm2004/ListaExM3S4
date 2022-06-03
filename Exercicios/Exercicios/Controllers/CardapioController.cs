@@ -1,5 +1,6 @@
 ﻿using Exercicios.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Exercicios.Controllers
@@ -11,64 +12,121 @@ namespace Exercicios.Controllers
         {
             this.context = context;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            using (var contextLocal = context.CreateDbContext())
-            {
-                return View(await contextLocal.Cardapios.ToListAsync());
-            }
+            var listaLocalizacoes = BuscarTodasLocalizacoes();
+            return View(listaLocalizacoes);
         }
-        public IActionResult Create()
+
+
+        public async Task<IActionResult> Create()
         {
+            ViewBag.TodasEmpresas = MontarSelect();
             return View();
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CardapioModel model)
+        public async Task<IActionResult> Create(ListarCardapioEmpresaViewModel model)
         {
-            if (!ModelState.IsValid)
+            CardapioModel cardapio = model;
+            cardapio.DataCadastro = DateTime.Now;
+            cardapio.Ativo = true;
+            using (var contextLocal = context.CreateDbContext())
             {
-                return View(model);
-            }
-            model.Ativo = true;
-            using (var contextLocal = this.context.CreateDbContext())
-            {
-                contextLocal.Cardapios.Add(model);
+                cardapio.EmpresaId = contextLocal.Empresas.Where(w => w.Id == cardapio.EmpresaId.Id).First();
+                contextLocal.Cardapios.Add(cardapio);
                 await contextLocal.SaveChangesAsync();
-                return RedirectToAction("Index");
             }
+
+            return RedirectToAction("Index");
         }
-        public async Task<IActionResult> Edit(int id)
+
+
+
+        [NonAction]
+        private SelectList MontarSelect()
         {
-            using (var contextLocal = this.context.CreateDbContext())
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            using (var contextLocal = context.CreateDbContext())
             {
-                var CardapioModel = await contextLocal.Cardapios.Where(w => w.Id == id).FirstOrDefaultAsync();
+                var empresas = contextLocal.Empresas;
 
-                if (CardapioModel == null)
+                foreach (var empresa in empresas)
                 {
-                    return NotFound();
+                    list.Add(new SelectListItem
+                    {
+                        Text = empresa.Descricao,
+                        Value = empresa.Id.ToString()
+                    });
                 }
-
-                return View(CardapioModel);
             }
+
+            return new SelectList(list, "Value", "Text");
+        }
+
+        private IEnumerable<ListarCardapioEmpresaViewModel> BuscarTodasLocalizacoes()
+        {
+            var listarCardapioEmpresaViewModel = new List<ListarCardapioEmpresaViewModel>();
+
+            using (var contextLocal = context.CreateDbContext())
+            {
+                var cardapios = contextLocal.Cardapios
+                            .Include(empresa => empresa.EmpresaId);
+
+                cardapios.ToList().ForEach(cardapios =>
+                {
+                    listarCardapioEmpresaViewModel.Add(new ListarCardapioEmpresaViewModel
+                    {
+                        Id = cardapios.Id,
+                        Descricao = cardapios.Descricao,
+                        Valor = cardapios.Valor,
+                        EmpresaId = cardapios.EmpresaId.Id,
+                        Ativo = cardapios.Ativo,
+                        DescricaoEmpresa = $"{cardapios.EmpresaId.Id} - {cardapios.EmpresaId.Descricao}"
+
+                    });
+                });
+            }
+
+            return listarCardapioEmpresaViewModel;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CardapioModel model)
+        public async Task<IActionResult> Edit(int id, ListarCardapioEmpresaViewModel model)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.TodasEmpresas = MontarSelect();
                 return View(model);
             }
 
             using var contextLocal = context.CreateDbContext();
 
-            contextLocal.Update(model);
+            CardapioModel cardapio = model;
+            cardapio.EmpresaId = contextLocal.Empresas.Where(w => w.Id == model.EmpresaId).FirstOrDefault();
+            contextLocal.Update(cardapio);
             await contextLocal.SaveChangesAsync();
 
             return RedirectToAction("Index");
 
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewBag.TodasEmpresas = MontarSelect();
+            using (var contextLocal = this.context.CreateDbContext())
+            {
+                var ListarCardapioEmpresaViewModel = await contextLocal.Cardapios.Where(w => w.Id == id).FirstOrDefaultAsync();
+
+                if (ListarCardapioEmpresaViewModel == null)
+                {
+                    
+                    return NotFound();
+                }
+
+                return View(ListarCardapioEmpresaViewModel);
+            }
         }
         [HttpGet]
         public IActionResult Delete(int id, string descricao)
@@ -95,5 +153,8 @@ namespace Exercicios.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+        //Falta atender a regra : Ao Criar e Editar não pode existir a mesma empresa no endereço
     }
 }

@@ -68,7 +68,7 @@ namespace Exercicios.Controllers
             using var contextLocal = this.context.CreateDbContext();
             if (model.Ativo == false)
             {
-                var LocalizacaoModel = await contextLocal.Localizacoes.Where(l => l.Empresa == model).FirstOrDefaultAsync();
+                var LocalizacaoModel = await contextLocal.Localizacoes.Where(l => l.EmpresaId == model).FirstOrDefaultAsync();
                 LocalizacaoModel.Ativo = false;
 
             }

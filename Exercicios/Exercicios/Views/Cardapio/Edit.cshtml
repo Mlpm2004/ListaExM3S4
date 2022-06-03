@@ -1,4 +1,5 @@
-﻿@model Exercicios.Models.CardapioModel
+﻿@using System.Globalization
+@model Exercicios.Models.CardapioModel
 
 @{
     ViewData["Title"] = "Editar";
@@ -12,29 +13,36 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input type="hidden" asp-for="Id" />
+            <div class="form-group m-2">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
-             <div class="form-group">
+             <div class="form-group m-2">
+
                 <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" class="form-control" />
+                <input asp-for="Valor" class="form-control" type="number" value="@Model.Valor.ToString("N", CultureInfo.InvariantCulture)"/>
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
-             <div class="form-group">
-                <label asp-for="Empresa" class="control-label"></label>
-                <input asp-for="Empresa" class="form-control" />
-                <span asp-validation-for="Empresa" class="text-danger"></span>
+             <div class="form-group m-2">
+                <label asp-for="DataCadastro" class="control-label"></label>
+                <input asp-for="DataCadastro" class="form-control"  disabled/>
+                <span asp-validation-for="DataCadastro" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group m-2">
+                <label asp-for="EmpresaId" class="control-label"></label>
+                @Html.DropDownListFor(model => model.EmpresaId, 
+                                      ViewBag.TodasEmpresas as SelectList, 
+                                      new{ @class="form-control" })
+            </div>
+            <div class="form-group form-check m-2">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="form-group m-2">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

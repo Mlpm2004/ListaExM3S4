@@ -15,10 +15,13 @@ namespace Exercicios.Models
         [DisplayName("Cidade")]
         public string Cidade { get; set; }
 
+        [DisplayName("Ativo")]
+        public bool Ativo { get; set; }
+        
         [DisplayName("UF")]
         public string UF { get; set; }
         [DisplayName("Empresa Id")]
-        public int Empresa { get; set; }
+        public int EmpresaId { get; set; }
 
         [DisplayName("Descrição")]
         public string DescricaoEmpresa { get; set; }
@@ -33,7 +36,7 @@ namespace Exercicios.Models
                 UF = model.UF,
                 Ativo = true,
                 Bairro = model.Bairro,
-                Empresa = new EmpresaModel { Id = model.Empresa },
+                EmpresaId = new EmpresaModel { Id = model.EmpresaId },
                 
             };
 

@@ -22,7 +22,7 @@ namespace Exercicios.Models
         [Display(Name = "UF")] public string UF { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
-        [ForeignKey("EmpresaId")]
-        public EmpresaModel Empresa { get; set; }
+        [ForeignKey("Empresa-Id")]
+        public EmpresaModel EmpresaId { get; set; }
     }
 }

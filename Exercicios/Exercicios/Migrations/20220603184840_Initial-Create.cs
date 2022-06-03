@@ -34,13 +34,13 @@ namespace Exercicios.Migrations
                     Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    EmpresaId = table.Column<int>(type: "int", nullable: false)
+                    EmpresaId = table.Column<int>(name: "Empresa-Id", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cardapio", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cardapio_Empresa_EmpresaId",
+                        name: "FK_Cardapio_Empresa_Empresa-Id",
                         column: x => x.EmpresaId,
                         principalTable: "Empresa",
                         principalColumn: "Id",
@@ -59,13 +59,13 @@ namespace Exercicios.Migrations
                     UF = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    EmpresaId = table.Column<int>(type: "int", nullable: false)
+                    EmpresaId = table.Column<int>(name: "Empresa-Id", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Localizacao", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Localizacao_Empresa_EmpresaId",
+                        name: "FK_Localizacao_Empresa_Empresa-Id",
                         column: x => x.EmpresaId,
                         principalTable: "Empresa",
                         principalColumn: "Id",
@@ -73,14 +73,14 @@ namespace Exercicios.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cardapio_EmpresaId",
+                name: "IX_Cardapio_Empresa-Id",
                 table: "Cardapio",
-                column: "EmpresaId");
+                column: "Empresa-Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Localizacao_EmpresaId",
+                name: "IX_Localizacao_Empresa-Id",
                 table: "Localizacao",
-                column: "EmpresaId");
+                column: "Empresa-Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
