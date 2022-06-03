@@ -29,6 +29,9 @@
             @Html.DisplayNameFor(model => model.UF)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Id_Empresa)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Ativo)
         </th>
     </tr>
@@ -51,11 +54,14 @@
                 <td>
                     @Html.DisplayFor(model => LocalizacaoModel.UF)
                 </td>
+                 <td>
+                    @Html.DisplayFor(model => LocalizacaoModel.Id_Empresa)
+                </td>
                 <td>
                     @Html.DisplayFor(model => LocalizacaoModel.Ativo)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@LocalizacaoModel.Id">Editar</a>
+                    <a class = "btn-primary btn-primary" asp-action="Edit" asp-route-id="@LocalizacaoModel.Id">Editar</a>
                     @*ToDo: Deletar*@
                 </td>
             </tr>

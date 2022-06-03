@@ -58,21 +58,20 @@ namespace Exercicios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EmpresaModel model)
         {
-            using (var contextoLocal = this.context.CreateDbContext())
-            if (model.Ativo == false)
-            {
-
-                var LocalizacaoModel = await contextoLocal.Localizacoes.Where(l => l.Id_Empresa==model).FirstOrDefaultAsync();
-                    LocalizacaoModel.Ativo = false;
-
-            }
+  
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            using var contextLocal = context.CreateDbContext();
+            using var contextLocal = this.context.CreateDbContext();
+            if (model.Ativo == false)
+            {
+                var LocalizacaoModel = await contextLocal.Localizacoes.Where(l => l.Id_Empresa == model).FirstOrDefaultAsync();
+                LocalizacaoModel.Ativo = false;
 
+            }
+ 
             contextLocal.Update(model);
             await contextLocal.SaveChangesAsync();
 

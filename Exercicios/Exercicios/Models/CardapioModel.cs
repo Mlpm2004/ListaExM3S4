@@ -6,10 +6,12 @@ namespace Exercicios.Models
     public class CardapioModel
     {
         [Column("Id")]
+        [Display(Name = "ID do Cardápio")]
         public int Id { get; set; }
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Erro na desrição com quantiade de caracteres")]
+        [Display(Name = "ID do Cardápio")]
         public string Descricao { get; set; }
-        [MaxLength(100)]
+        [Display(Name = "Valor do Cardápio")]
         public decimal Valor{ get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
