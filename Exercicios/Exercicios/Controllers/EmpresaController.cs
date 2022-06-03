@@ -79,5 +79,6 @@ namespace Exercicios.Controllers
             return RedirectToAction("Index");
 
         }
+        // Falta atender a regra de desativação :Para desativar uma empresa precisa mudar a situação também da Localização e Cardápio
     }
 }

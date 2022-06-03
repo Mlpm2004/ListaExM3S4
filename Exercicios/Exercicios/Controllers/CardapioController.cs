@@ -70,5 +70,30 @@ namespace Exercicios.Controllers
             return RedirectToAction("Index");
 
         }
+        [HttpGet]
+        public IActionResult Delete(int id, string descricao)
+        {
+            ViewBag.Id = id;
+            ViewBag.Descricao = descricao;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteRegistro(int id)
+        {
+            using var contextLocal = context.CreateDbContext();
+            var categoriaModel = await contextLocal.Cardapios.Where(w => w.Id == id).FirstOrDefaultAsync();
+
+            if (categoriaModel == null)
+            {
+                return NotFound();
+            }
+
+            contextLocal.Cardapios.Remove(categoriaModel);
+            await contextLocal.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

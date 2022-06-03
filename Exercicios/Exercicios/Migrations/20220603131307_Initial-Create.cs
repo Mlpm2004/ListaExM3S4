@@ -34,14 +34,14 @@ namespace Exercicios.Migrations
                     Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    FK_Cardapio_Empresa = table.Column<int>(type: "int", nullable: false)
+                    EmpresaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cardapio", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cardapio_Empresa_FK_Cardapio_Empresa",
-                        column: x => x.FK_Cardapio_Empresa,
+                        name: "FK_Cardapio_Empresa_EmpresaId",
+                        column: x => x.EmpresaId,
                         principalTable: "Empresa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -59,28 +59,28 @@ namespace Exercicios.Migrations
                     UF = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    FK_Localizacao_Empresa = table.Column<int>(type: "int", nullable: false)
+                    EmpresaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Localizacao", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Localizacao_Empresa_FK_Localizacao_Empresa",
-                        column: x => x.FK_Localizacao_Empresa,
+                        name: "FK_Localizacao_Empresa_EmpresaId",
+                        column: x => x.EmpresaId,
                         principalTable: "Empresa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cardapio_FK_Cardapio_Empresa",
+                name: "IX_Cardapio_EmpresaId",
                 table: "Cardapio",
-                column: "FK_Cardapio_Empresa");
+                column: "EmpresaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Localizacao_FK_Localizacao_Empresa",
+                name: "IX_Localizacao_EmpresaId",
                 table: "Localizacao",
-                column: "FK_Localizacao_Empresa");
+                column: "EmpresaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

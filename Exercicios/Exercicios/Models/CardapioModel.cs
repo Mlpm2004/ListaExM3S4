@@ -16,7 +16,7 @@ namespace Exercicios.Models
         public decimal Valor{ get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
-        [ForeignKey("FK_Cardapio_Empresa")]
+        [ForeignKey("EmpresaId")]
         public EmpresaModel Empresa { get; set; }
     }
 }

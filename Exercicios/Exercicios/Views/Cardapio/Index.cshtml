@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Exercicios.Models.CardapioModel>
 
 @{
-    ViewData["Title"] = "Inde da Página de Cardapio";
+    ViewData["Title"] = "Index da Página de Cardapio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,6 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Ativo)
         </th>
+        <th>
+            Ações
+        </th>
     </tr>
     <tbody>
         @foreach (var CardapioModel in Model)
@@ -45,8 +48,16 @@
                     @Html.DisplayFor(model => CardapioModel.Ativo)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@CardapioModel.Id">Editar</a>
-                    @*ToDo: Deletar*@
+                    @Html.ActionLink("Editar", 
+                                     "Edit", 
+                                     "Cardapio", 
+                                     new { id = @CardapioModel.Id}, 
+                                     new { @class="btn btn-primary " } )
+                    @Html.ActionLink("Deletar", 
+                                     "Delete", 
+                                     "Cardapio", 
+                                     new { id = @CardapioModel.Id, descricao = @CardapioModel.Descricao }, 
+                                     new { @class="btn btn-danger " } )
                 </td>
             </tr>
         }

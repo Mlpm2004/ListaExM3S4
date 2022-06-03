@@ -22,6 +22,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Ativo)
         </th>
+        <th>
+            Ações
+        </th>
     </tr>
     <tbody>
         @foreach (var EmpresaModel in Model)
@@ -37,8 +40,11 @@
                     @Html.DisplayFor(model => EmpresaModel.Ativo)
                 </td>
                 <td>
-                    <a asp-action="Edit" class = "btn-primary btn-primary" asp-route-id="@EmpresaModel.Id">Editar</a>
-                    @*ToDo: Deletar*@
+                    @Html.ActionLink("Editar", 
+                                     "Edit", 
+                                     "Empresa", 
+                                     new { id = @EmpresaModel.Id}, 
+                                     new { @class="btn btn-primary " } )
                 </td>
             </tr>
         }

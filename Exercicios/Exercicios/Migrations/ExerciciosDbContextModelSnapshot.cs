@@ -42,7 +42,7 @@ namespace Exercicios.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("FK_Cardapio_Empresa")
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Valor")
@@ -50,7 +50,7 @@ namespace Exercicios.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FK_Cardapio_Empresa");
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Cardapio");
                 });
@@ -105,7 +105,7 @@ namespace Exercicios.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FK_Localizacao_Empresa")
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Logradouro")
@@ -120,7 +120,7 @@ namespace Exercicios.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FK_Localizacao_Empresa");
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Localizacao");
                 });
@@ -129,7 +129,7 @@ namespace Exercicios.Migrations
                 {
                     b.HasOne("Exercicios.Models.EmpresaModel", "Empresa")
                         .WithMany()
-                        .HasForeignKey("FK_Cardapio_Empresa")
+                        .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -140,7 +140,7 @@ namespace Exercicios.Migrations
                 {
                     b.HasOne("Exercicios.Models.EmpresaModel", "Empresa")
                         .WithMany()
-                        .HasForeignKey("FK_Localizacao_Empresa")
+                        .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

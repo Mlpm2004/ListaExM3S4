@@ -1,0 +1,37 @@
+﻿@model Exercicios.Models.CardapioModel
+@{
+    ViewData["Title"] = "Deletar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h4>Cardapio Model</h4>
+<hr />
+<<div class="row">
+    <p>
+        @*@Html.DisplayNameFor(model => model.Id)*@
+        Id da Descrição
+        <br />
+        @ViewBag.Id
+    </p>
+
+    <p>
+        @*@Html.DisplayNameFor(model => model.Descricao)*@
+        Descrição do Cardapio
+        <br />
+        @ViewBag.Descricao
+    </p>
+
+    <form asp-action="DeleteRegistro" asp-controller="Cardapio" asp-route-id="@ViewBag.Id">
+        <input type="submit" value="Deletar registro @ViewBag.Id" />
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar Index Cardapio</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
