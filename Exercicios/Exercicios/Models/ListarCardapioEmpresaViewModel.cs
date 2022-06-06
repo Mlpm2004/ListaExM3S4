@@ -5,7 +5,8 @@ namespace Exercicios.Models
     {
         public ListarCardapioEmpresaViewModel()
         {
-            DescricaoEmpresa = String.Empty;    
+            DescricaoEmpresa = String.Empty;   
+            
         }
         [DisplayName("Id do Cardápio")]
         public int Id { get; set; }
@@ -40,5 +41,6 @@ namespace Exercicios.Models
 
             return cardapioModel;
         }
+      
     }
 }

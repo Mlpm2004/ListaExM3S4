@@ -14,8 +14,9 @@ namespace Exercicios.Controllers
         }
         public IActionResult Index()
         {
-            var listaLocalizacoes = BuscarTodasLocalizacoes();
-            return View(listaLocalizacoes);
+            var listaCardapios = BuscarTodosCardapios();
+
+            return View(listaCardapios);
         }
 
        
@@ -66,7 +67,7 @@ namespace Exercicios.Controllers
             return new SelectList(list, "Value", "Text");
         }
 
-        private IEnumerable<ListarCardapioEmpresaViewModel> BuscarTodasLocalizacoes()
+        private IEnumerable<ListarCardapioEmpresaViewModel> BuscarTodosCardapios()
         {
             var listarCardapioEmpresaViewModel = new List<ListarCardapioEmpresaViewModel>();
 
