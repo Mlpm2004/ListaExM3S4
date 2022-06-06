@@ -18,7 +18,7 @@ namespace Exercicios.Controllers
             return View(listaLocalizacoes);
         }
 
-
+       
         public async Task<IActionResult> Create()
         {
             ViewBag.TodasEmpresas = MontarSelect();
@@ -26,6 +26,7 @@ namespace Exercicios.Controllers
         }
 
         [HttpPost]
+       
         public async Task<IActionResult> Create(ListarCardapioEmpresaViewModel model)
         {
             CardapioModel cardapio = model;
@@ -112,6 +113,7 @@ namespace Exercicios.Controllers
             return RedirectToAction("Index");
 
         }
+        [Route("cardapio/{id}/Edit")]
         public async Task<IActionResult> Edit(int id)
         {
             ViewBag.TodasEmpresas = MontarSelect();
@@ -129,6 +131,7 @@ namespace Exercicios.Controllers
             }
         }
         [HttpGet]
+        [Route("cardapio/{id}/descricao/{descricao}/Delete")]
         public IActionResult Delete(int id, string descricao)
         {
             ViewBag.Id = id;
@@ -155,6 +158,6 @@ namespace Exercicios.Controllers
         }
 
 
-        //Falta atender a regra : Ao Criar e Editar não pode existir a mesma empresa no endereço
+        
     }
 }

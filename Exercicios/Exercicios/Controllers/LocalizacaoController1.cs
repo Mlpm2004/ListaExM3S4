@@ -81,6 +81,11 @@ namespace Exercicios.Controllers
             var listaLocalizacoes = BuscarTodasLocalizacoes();
             return View(listaLocalizacoes);
         }
+        public IActionResult Erro()
+        {
+            
+            return View();
+        }
 
 
         public async Task<IActionResult> Create()
@@ -93,10 +98,21 @@ namespace Exercicios.Controllers
         public async Task<IActionResult> Create(ListarLocalizacaoEmpresaViewModel model)
         {
             LocalizacaoModel localizacao = model;
-
-            using (var contextLocal = context.CreateDbContext())
+             using (var contextLocal = context.CreateDbContext())
             {
                 localizacao.EmpresaId = contextLocal.Empresas.Where(w => w.Id == localizacao.EmpresaId.Id).First();
+                foreach (LocalizacaoModel nome in contextLocal.Localizacoes) 
+                {
+                   if(  nome.Logradouro     ==  localizacao.Logradouro      && 
+                        nome.Bairro         ==  localizacao.Bairro          &&
+                        nome.Cidade         ==  localizacao.Cidade          &&
+                        nome.EmpresaId      == localizacao.EmpresaId)
+                    {
+                        return RedirectToAction("Erro");
+                    }
+
+                }
+                
                 contextLocal.Localizacoes.Add(localizacao);
                 await contextLocal.SaveChangesAsync();
             }
@@ -155,6 +171,8 @@ namespace Exercicios.Controllers
             }
 
             return listarLocalizacaoEmpresaViewModel;
-        }        //Falta atender a regra : Ao Criar e Editar não pode existir a mesma empresa no endereço
+        }
+        
+        
     }
 }

@@ -29,6 +29,9 @@
                 @Html.DisplayNameFor(model => model.Ativo)
             </th>
             <th>
+                Cadastro
+            </th>
+            <th>
                 Detalhes da Empresa
             </th>
             <th>
@@ -53,9 +56,12 @@
                         @Html.DisplayFor(model => cardapioModel.Ativo)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => cardapioModel.DescricaoEmpresa)
+                        @Html.DisplayFor(model => cardapioModel.DataCadastro)
                     </td>
                     <td>
+                        @Html.DisplayFor(model => cardapioModel.DescricaoEmpresa)
+                    </td>
+                   <td>
                         @Html.ActionLink("Editar", 
                                             "Edit", 
                                             "Cardapio", 
